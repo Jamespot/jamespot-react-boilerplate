@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "outDir": "./build",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "es6",
+        "jsx": "react",
+        "declaration": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "includes": ["src"],
+    "types": []
+}
