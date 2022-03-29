@@ -1,6 +1,6 @@
 {
     "name": "jamespot-react-boilerplate",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "private": true,
     "scripts": {
@@ -59,7 +59,7 @@
         "react-docgen-typescript-loader": "^2.2.0",
         "react-docgen-typescript-webpack-plugin": "^1.1.0",
         "react-select": "^3.2.0",
-        "react-test-renderer": "^16.13.1",
+        "react-test-renderer": "^17.0.1",
         "source-map-loader": "^1.0.1",
         "style-loader": "^1.2.1",
         "ts-jest": "^27.0.7",
@@ -79,7 +79,7 @@
         "dot-prop-immutable": "^2.1.0",
         "escape-string-regexp": "^1.0.5",
         "file-loader": "^6.2.0",
-        "jamespot-react-components": "^1.0.0",
+        "jamespot-react-components": "^1.0.3",
         "jamespot-react-core": "^1.0.0",
         "jamespot-user-api": "^1.0.0",
         "pump": "^3.0.0",
