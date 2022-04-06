@@ -1,6 +1,8 @@
 {
     "en": {
         "DEMO_SEARCH_USER": "Find a user",
-        "DEMO_SEARCH": "Search"
+        "DEMO_SEARCH": "Search",
+        "DEMO_APP_TITLE": "Boilerplate",
+        "DEMO_APP_DESC": "Just a sample app"
     }
 }
