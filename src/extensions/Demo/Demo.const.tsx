@@ -1,6 +1,6 @@
 import { ReactExtensionProps } from 'jamespot-react-core';
 
-export const DemoApp: ReactExtensionProps = {
+export const DemoAppConst: ReactExtensionProps = {
     extensionName: 'Demo',
     route: 'boilerplate/demo', // App url will be /ng/r/boilerplate/demo
     idAnchor: 'boilerplate/demo', // The extension will be injected on a div with this id
