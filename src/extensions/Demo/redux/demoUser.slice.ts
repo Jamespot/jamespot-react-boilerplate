@@ -37,7 +37,7 @@ export const fetchSearchDemoUsers = createAsyncThunk(
             return;
         }
         return await jamespot.search.searchQuery({
-            keywords: keyword,
+            keywords: keyword === '' ? '*' : keyword,
             category: 'user',
             limit: 20,
         });

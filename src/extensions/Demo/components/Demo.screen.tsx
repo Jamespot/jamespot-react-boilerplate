@@ -1,57 +1,43 @@
-import {
-    JRCAppContainerProps,
-    JRCAppLeftColumnProps,
-    JRCTypographyProps,
-} from 'jamespot-react-components';
+import { JRCTemplateTwoColumnsProps } from 'jamespot-react-components';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { DemoRootState } from '../redux/demoUser.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { DemoRootState, fetchSearchDemoUsers } from '../redux/demoUser.slice';
 import { DemoForm } from './Demo.form';
 import { Results } from './Results.component';
 
-const JRCAppLeftColumn =
-    J.react.registry.getLazyComponent<JRCAppLeftColumnProps<any>>(
-        'AppLeftColumn'
+const TemplateTwoColumns =
+    J.react.registry.getLazyComponent<JRCTemplateTwoColumnsProps<null>>(
+        'TemplateTwoColumns'
     );
-const JRCAppContainer =
-    J.react.registry.getLazyComponent<JRCAppContainerProps>('AppContainer');
-
-const JRCTypography =
-    J.react.registry.getLazyComponent<JRCTypographyProps>('Typography');
 
 export const Demo: React.FC<any> = () => {
     const { entities, loading } = useSelector(
         (state: DemoRootState) => state.demoUser
     );
     const intl = useIntl();
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(fetchSearchDemoUsers());
+    }, []);
 
     return (
-        <JRCAppContainer>
-            <JRCAppLeftColumn
-                icon="icon-edit"
-                color={'#EA80CA'}
-                title={intl.formatMessage({
+        <TemplateTwoColumns
+            isLoading={loading === 'pending'}
+            leftColumn={{
+                icon: 'icon-edit',
+                color: '#EA80CA',
+                title: intl.formatMessage({
                     id: 'DEMO_APP_TITLE',
-                })}
-                description={intl.formatMessage({
+                }),
+                description: intl.formatMessage({
                     id: 'DEMO_APP_DESC',
-                })}
-            />
-            <div>
-                <JRCTypography variant="h1" size="xl" weight="medium">
-                    <FormattedMessage id="DEMO_APP_TITLE" />
-                </JRCTypography>
-                <DemoForm />
-                <div>
-                    {loading === 'pending' ? (
-                        <span>Loading</span>
-                    ) : (
-                        <Results results={entities} />
-                    )}
-                </div>
-            </div>
-        </JRCAppContainer>
+                }),
+            }}
+        >
+            <DemoForm />
+            <Results results={entities} />
+        </TemplateTwoColumns>
     );
 };
