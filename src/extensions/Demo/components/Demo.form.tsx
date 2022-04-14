@@ -24,10 +24,10 @@ export type DemoFomProps = {
 };
 
 const InputTitle =
-    J.react.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>(
+    JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>(
         'InputText'
     );
-const Button = J.react.registry.getLazyComponent<JRCButtonProps>('Button');
+const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
 export const DemoForm: React.FC<any> = () => {
     const dispatch = useDispatch();

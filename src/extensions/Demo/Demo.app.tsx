@@ -6,7 +6,7 @@ import { ExtensionProviderProps } from 'jamespot-react-core';
 loadResource();
 
 const ExtensionProvider =
-    J.react.registry.getLazyComponent<ExtensionProviderProps>(
+    JRCore.registry.getLazyComponent<ExtensionProviderProps>(
         'ExtensionProvider'
     );
 

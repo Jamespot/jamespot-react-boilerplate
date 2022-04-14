@@ -7,7 +7,7 @@ import { DemoForm } from './Demo.form';
 import { Results } from './Results.component';
 
 const TemplateTwoColumns =
-    J.react.registry.getLazyComponent<JRCTemplateTwoColumnsProps<null>>(
+    JRCore.registry.getLazyComponent<JRCTemplateTwoColumnsProps<null>>(
         'TemplateTwoColumns'
     );
 

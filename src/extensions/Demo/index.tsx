@@ -6,14 +6,14 @@ const DemoApp = React.lazy(
     () => import(/* webpackChunkName: "DemoApp" */ './Demo.app')
 );
 
-J.react.store.add('demoUser', demoUserSlice.reducer);
+JRCore.store.add('demoUser', demoUserSlice.reducer);
 
-J.react.extensionAdd(
+JRCore.extensionAdd(
     DemoAppConst.extensionName,
     () => import(/* webpackChunkName: "GroupCreate" */ './Demo.app')
 );
 
-J.react.router.addRoute({
+JRCore.router.addRoute({
     path: DemoAppConst.route,
     element: (
         <React.Suspense fallback={<></>}>
