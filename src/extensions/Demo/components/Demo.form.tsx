@@ -5,6 +5,7 @@ import { fetchSearchDemoUsers, setKeyword } from '../redux/demoUser.slice';
 import { JRCButtonProps, JRCInputFieldProps } from 'jamespot-react-components';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
+import JRCore from 'jamespot-react-core';
 
 const FormContainer = styled.div`
     display: flex;

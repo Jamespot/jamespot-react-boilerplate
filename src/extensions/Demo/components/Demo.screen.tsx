@@ -1,10 +1,11 @@
 import { JRCTemplateTwoColumnsProps } from 'jamespot-react-components';
 import * as React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { DemoRootState, fetchSearchDemoUsers } from '../redux/demoUser.slice';
 import { DemoForm } from './Demo.form';
 import { Results } from './Results.component';
+import JRCore from 'jamespot-react-core';
 
 const TemplateTwoColumns =
     JRCore.registry.getLazyComponent<JRCTemplateTwoColumnsProps<null>>(

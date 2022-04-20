@@ -1,6 +1,7 @@
 import React from 'react';
 import { DemoAppConst } from './Demo.const';
 import { demoUserSlice } from './redux/demoUser.slice';
+import JRCore from 'jamespot-react-core';
 
 const DemoApp = React.lazy(
     () => import(/* webpackChunkName: "DemoApp" */ './Demo.app')
