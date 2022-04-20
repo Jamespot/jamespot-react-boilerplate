@@ -1,5 +1,6 @@
 import lang from './lang.json';
+import JRCore from 'jamespot-react-core';
 
 export default function loadResource() {
-    J.react.translation.addResources(lang);
+    JRCore.translation.addResources(lang);
 }

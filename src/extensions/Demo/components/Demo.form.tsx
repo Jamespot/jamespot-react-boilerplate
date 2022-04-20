@@ -5,13 +5,14 @@ import { fetchSearchDemoUsers, setKeyword } from '../redux/demoUser.slice';
 import { JRCButtonProps, JRCInputFieldProps } from 'jamespot-react-components';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
+import JRCore from 'jamespot-react-core';
 
 const FormContainer = styled.div`
     display: flex;
 `;
 
 const InputWrapper = styled.div`
-    width: 50%;
+    width: 100%;
 `;
 
 const ButtonWrapper = styled.div`
@@ -24,10 +25,10 @@ export type DemoFomProps = {
 };
 
 const InputTitle =
-    J.react.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>(
+    JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>(
         'InputText'
     );
-const Button = J.react.registry.getLazyComponent<JRCButtonProps>('Button');
+const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
 export const DemoForm: React.FC<any> = () => {
     const dispatch = useDispatch();

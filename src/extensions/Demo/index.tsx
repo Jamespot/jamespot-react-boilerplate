@@ -1,16 +1,24 @@
-import { DemoApp } from './Demo.const';
+import React from 'react';
+import { DemoAppConst } from './Demo.const';
 import { demoUserSlice } from './redux/demoUser.slice';
+import JRCore from 'jamespot-react-core';
 
-J.react.store.add('demoUser', demoUserSlice.reducer);
+const DemoApp = React.lazy(
+    () => import(/* webpackChunkName: "DemoApp" */ './Demo.app')
+);
 
-J.react.extensionAdd(
-    DemoApp.extensionName,
+JRCore.store.add('demoUser', demoUserSlice.reducer);
+
+JRCore.extensionAdd(
+    DemoAppConst.extensionName,
     () => import(/* webpackChunkName: "GroupCreate" */ './Demo.app')
 );
 
-J.react.routeAdd(
-    DemoApp.route,
-    DemoApp.extensionName,
-    DemoApp.idAnchor,
-    DemoApp.gabarit
-);
+JRCore.router.addRoute({
+    path: DemoAppConst.route,
+    element: (
+        <React.Suspense fallback={<></>}>
+            <DemoApp />
+        </React.Suspense>
+    ),
+});
