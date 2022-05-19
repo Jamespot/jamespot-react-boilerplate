@@ -24,3 +24,5 @@ npm ci
 ### Executer le projet localement
 npm run local
 
+### Accéder à l'extension sur la plateforme
+Accédez à l'URL (adaptez à l'URL de votre plateforme): https://maplateforme.jamespot.pro/ng/rr/boilerplate/demo
