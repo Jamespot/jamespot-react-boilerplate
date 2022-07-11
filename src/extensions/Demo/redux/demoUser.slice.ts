@@ -4,23 +4,10 @@ import {
     EnhancedStore,
     PayloadAction,
 } from '@reduxjs/toolkit';
-import jamespot from 'jamespot-user-api';
+import jamespot, { Little } from 'jamespot-user-api';
 
 export type DemoState = {
-    entities: {
-        id: number;
-        title: string;
-        type: string;
-        uri: string;
-        mainType: string;
-        _cssColor: string;
-        _cssClass: string;
-        url: string;
-        firstname: string;
-        lastname: string;
-        company: string;
-        mail: string;
-    }[];
+    entities: Array<Little>;
     loading: 'idle' | 'pending';
     keyword: string;
 };
