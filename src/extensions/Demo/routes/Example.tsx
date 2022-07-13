@@ -3,6 +3,7 @@ import { DemoForm } from "../components/DemoForm";
 import { Results } from "../components/DemoResults";
 import { useDispatch, useSelector } from "react-redux";
 import { DemoRootState, fetchSearchDemoUsers } from "../redux/demoUser.slice";
+import { Link } from "react-router-dom";
 
 /**
  * This component is one of the entry of your application
@@ -21,6 +22,7 @@ function Example() {
 
     return (
         <>
+            <Link to="/ng/rr/boilerplate/demo/another-screen">Accéder à la deuxième page de démonstration</Link>
             <DemoForm />
             {!loading && <Results results={entities} />}
         </>

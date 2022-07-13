@@ -1,51 +1,100 @@
+# Architecture de Jamespot React Boilerplate
 
-# Architecture React
-L'architecture mise en place permet d'executer plusieures applications React au sein de Jamespot.
-Pour cela, nous utilisons plusieurs projets:
-- jamespot-react-core : Ce projet est chargé sur toutes les pages. Il permet d'initialiser l'univers React et de partager un ensemble d'éléments entre toutes les applications (routes, store, components).
-- Les projets d'application (cf boilerplate) : Les projets d'application instancient une application dans l'univers React. Ils consomment les services fournis par jamespot-react-core.
-- jamespot-react-component : C'est une bibliothèque de composants graphiques. Chaque composant est enregistré dans la registry, le core. Les applications peuvent consommer les composants en faisant appel à la registry. Il est possible de créer plusieurs bibliothèques de composants.
-- jamespot-user-api : Utilitaires permettant de faire appel à l'api jamespot.
+## Introduction
 
-# Description de l'architecture d'un projet d'application
+Au sein d'une plateforme Jamespot, un environnement React tourne côté navigateur et permet d'executer des applications
+développées avec le projet Jamespot React Boilerplate (JRB) se basant sur la stack React Jamespot.
 
-Ce projet npm à une structure classique avec les fichiers de conf à la racine (package.json, tsconfig, webpack, jest...).
+La stack React Jamespot est composée des projets suivants :
 
-Le fichier src/App.tsx est notre point d'entré du projet. Ce fichier déclare l'objet qui va référencer Core et chacune des Applications.
-Cet objet sera exposé dans le front pour maitriser le chargement des applications et initialiser l'environnement JS (langue, ressources...).
+- jamespot-user-api : utilitaire permettant de faire appel à l'api jamespot
+- jamespot-react-component : bibliothèque de composants graphiques
+- jamespot-react-core : instantie react et les différentes librairies utilisées
 
-## Extension
-***
+Ces trois projets sont en dépendances de JRB et sont disponibles publiquement sur npmjs. Elles seront installées et
+devront être utilisées pour les développements.
 
-Dans le répertoire src/extensions, pour chaque application nous allons créer un répertoire dédié.
-Dans ce répertoire il y aura la structure suivante :
+## Présentation des librairies utilisées
 
-- src/extensions/[MonApp]/[MonApp].app.tsx : Fichier chargé par /src/App.tsx et qui permey de charger l'application,
-- src/extensions/[MonApp]/.tsx : Déclare la route et la charge,
-- src/extensions/[MonApp]/components/ : Repertoire contenant components,
-- src/extensions/[MonApp]/actions/ : Repertoire contenant les actions,
-- src/extensions/[MonApp]/reducer/ : Repertoire contenant le reducer et les selectors,
-- src/extensions/[MonApp]/translation/ : Fichier de traduction.
+<!-- TODO add configuration location / use -->
 
+| Librairie         | Usage       | Description                                                |
+|       :---:       |    :----:   |          :---                                              |
+| Babel & Webpack   | bundle      | bundle des projets                                         |
+| -                 | React       | Framework                                                  |
+| -                 | Typescript  | Le projet est typé avec Typescript                         |
+| React Router Dom  | router      | mise en place des routes                                   |
+| Redux Toolkit     | store Redux | gestion du store de l'application. Elle peut être utilisée avec Redux DevTools dans le navigateur |
+| Redux             | store Redux | nous avons déprécié son usage. Préférer Redux Toolkit      |
+| React Hook Form   | formulaires | gestion des formulaires (validation, manipulation, gestion des erreurs, etc.) |
+| Redux Form        | formulaires | nous avons déprécié son usage. Préférer React Hook Form    |
+| Styled Components | css         | stylisation css                                            |
+| React-intl        | traductions | gestion des clés de traduction                             |
+| Eslint / Prettier | qualité     | style de code Prettier
 
-# Librairies utilisées dans l'application :
+## Architecture du code JRB
 
-- Install webpack + react + typescript
-    https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
+Sous src/extensions se trouve le code des extensions.
 
-- Install Jest :
-    - https://jestjs.io/docs/en/tutorial-react
-    - https://www.robinwieruch.de/react-testing-jest
-    - https://basarat.gitbooks.io/typescript/docs/testing/jest.html
+> extension : une ou plusieurs application React avec un scope fonctionnel défini.
 
-- Install Enzyme :
-    - https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675
+Exemple : les favoris contiennent 2 extensions :
 
-- Install storybook
-    - https://storybook.js.org/docs/guides/guide-react/
-    - Storybook with type https://medium.com/@dandobusiness/setting-up-a-react-typescript-storybook-project-5e4e9f540568
+- la modal présente dans le menu utilisateur
+- la page classique avec vue tableau.
 
-- Absolute path
-    - https://medium.com/hackernoon/absolute-imports-with-create-react-app-4c6cfb66c35d
-    - In __tests__ the tsconfig add @src to import in absolute
+Ces deux extensions partagent un store commun.
 
+- src/extensions/[MonApp]/index.tsx : déclare les routes, le(s) extension(s) et éventuellement le reducer associé
+- src/extensions/[MonApp]/Layout/ : componsants de types Layout ou Routes
+- src/extensions/[MonApp]/components/ : composants
+- src/extensions/[MonApp]/redux/ : reducers
+- src/extensions/[MonApp]/translation/ : traductions
+
+## Instantiation d'une extension
+
+Pour initialiser une extension, il suffit d'ajouter des routes via le router react-router-dom encapsulé dans jamespot-react-core : `JRCore.router.addRoute()`
+
+## Utilisation du framework jamespot-user-api
+
+L'api peut être appelé comme suit:
+
+```typescript
+import jamespot from 'jamespot-user-api';
+import type { Little } from 'jamespot-user-api';
+
+type ArticleType = Little & {
+    // custom article type
+}
+
+jamespot.article.get<ArticleType>({ uri: "article/325" }).then((article) => {
+    ...
+});
+```
+
+> Remarque : les objets Jamespot étendent le type minimum `Little`.
+
+> Remarque 2 : les API de création / modification / suppression sont protégés par un token CSRF. La récupération du token est géré par la librairie jamespot-user-api.
+
+> Remarque 3 : il est conseillé d'utiliser jamespot-user-api avec la librairie redux-toolkit autant que possible. Cela facilite et uniformise le workflow des appels api. Un exemple est disponible dans le projet Demo.
+
+## Utilisation du framework jamespot-reaction-components
+
+Les composants peuvent être visualisés au sein du Storybook. Ils doivent être importés via la registry :
+
+```typescript
+import { JRCButtonProps } from 'jamespot-react-components';
+import JRCore from 'jamespot-react-core';
+
+const TemplateTwoColumns = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
+
+export function Component() {
+    return (
+        <Button>
+            mon beau bouton
+        </Button>
+    )
+}
+```
+
+La registry permet de charger les composants dynamiquement.

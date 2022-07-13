@@ -16,7 +16,7 @@ export const ROUTES = {
         label: 'APP_Demo_Tab_Example',
     },
     ANOTHER_SCREEN: {
-        path: 'stats',
+        path: 'another-screen',
         key: 'ANOTHER_SCREEN',
         icon: 'fs-table-group',
         label: 'APP_Demo_Tab_AnotherScreen',
