@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import JRCore from 'jamespot-react-core';
 
+/**
+ * The components are styled with direct styling or with styled components
+ */
 const FormContainer = styled.div`
     display: flex;
 `;
