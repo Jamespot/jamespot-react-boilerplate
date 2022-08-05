@@ -57,6 +57,8 @@ Pour initialiser une extension, il suffit d'ajouter des routes via le router rea
 
 ## Utilisation du framework jamespot-user-api
 
+La documentation de jamespot-user-api est disponible dans la librairie elle-même sous : "nodes_modules/jamespot-user-api/documentation/index.htm".
+
 L'api peut être appelé comme suit:
 
 ```typescript
@@ -78,9 +80,11 @@ jamespot.article.get<ArticleType>({ uri: "article/325" }).then((article) => {
 
 > Remarque 3 : il est conseillé d'utiliser jamespot-user-api avec la librairie redux-toolkit autant que possible. Cela facilite et uniformise le workflow des appels api. Un exemple est disponible dans le projet Demo.
 
-## Utilisation du framework jamespot-reaction-components
+## Utilisation du framework jamespot-react-components
 
-Les composants peuvent être visualisés au sein du Storybook. Ils doivent être importés via la registry :
+Les composants peuvent être visualisés au sein du Storybook. Celui-ci est généré est disponible dans la librie elle-même sous : "nodes_modules/jamespot-react-components/storybook-static/index.html"
+
+Les composants doivent être importés via la registry :
 
 ```typescript
 import { JRCButtonProps } from 'jamespot-react-components';
