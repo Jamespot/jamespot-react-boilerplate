@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, EnhancedStore, PayloadAction } from '@reduxjs/toolkit';
-import jamespot, { Little } from 'jamespot-user-api';
+import jamespot, { Little, Result } from 'jamespot-user-api';
 
 export type DemoState = {
     entities: Array<Little>;
@@ -26,7 +26,7 @@ export const fetchSearchDemoUsers = createAsyncThunk('demo/fetch', async (_, { g
 export const demoUserSlice = createSlice({
     name: 'demoUser',
     initialState: {
-        entities: [],
+        entities: [] as Array<Result>,
         loading: 'idle',
         keyword: '',
     },
@@ -37,7 +37,7 @@ export const demoUserSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchSearchDemoUsers.pending, (state, action) => {
+            .addCase(fetchSearchDemoUsers.pending, (state) => {
                 if (state.loading === 'idle') {
                     state.loading = 'pending';
                 }
@@ -45,10 +45,10 @@ export const demoUserSlice = createSlice({
             .addCase(fetchSearchDemoUsers.fulfilled, (state, action) => {
                 if (state.loading === 'pending') {
                     state.loading = 'idle';
-                    state.entities = action.payload.result.results;
+                    state.entities = action.payload?.result.results || [];
                 }
             })
-            .addCase(fetchSearchDemoUsers.rejected, (state, action) => {
+            .addCase(fetchSearchDemoUsers.rejected, (state) => {
                 if (state.loading === 'pending') {
                     state.loading = 'idle';
                 }

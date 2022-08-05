@@ -34,7 +34,7 @@ export const DemoForm: React.FC<any> = () => {
     const dispatch = useDispatch();
     const intl = useIntl();
 
-    function handleSearchUsers(e) {
+    function handleSearchUsers(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         dispatch(fetchSearchDemoUsers());
     }

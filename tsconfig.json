@@ -2,14 +2,15 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "outDir": "./build",
-        "noImplicitAny": false,
+        "noImplicitAny": true,
         "module": "esnext",
         "moduleResolution": "node",
         "target": "es6",
         "jsx": "react",
         "declaration": true,
         "allowSyntheticDefaultImports": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "strict": true
     },
     "includes": ["src"],
     "types": []
