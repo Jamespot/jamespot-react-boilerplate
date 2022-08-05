@@ -2,7 +2,7 @@ import React from 'react';
 import { DemoAppConst } from './Demo.const';
 import JRCore from 'jamespot-react-core';
 import { ROUTES } from './routes/DemoLayout';
-import { demoUserSlice } from "./redux/demoUser.slice";
+import { demoUserSlice } from './redux/demoUser.slice';
 
 const Layout = React.lazy(() => import('./routes/DemoLayout'));
 const Example = React.lazy(() => import('./routes/Example'));

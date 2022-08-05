@@ -1,9 +1,4 @@
-import {
-    createAsyncThunk,
-    createSlice,
-    EnhancedStore,
-    PayloadAction,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, EnhancedStore, PayloadAction } from '@reduxjs/toolkit';
 import jamespot, { Little } from 'jamespot-user-api';
 
 export type DemoState = {
@@ -16,20 +11,17 @@ export type DemoRootState = {
 };
 export type DemoStore = EnhancedStore<DemoState>;
 
-export const fetchSearchDemoUsers = createAsyncThunk(
-    'demo/fetch',
-    async (_, { getState }) => {
-        const { loading, keyword } = (getState() as DemoRootState).demoUser;
-        if (loading !== 'pending') {
-            return;
-        }
-        return await jamespot.search.searchQuery({
-            keywords: keyword === '' ? '*' : keyword,
-            category: 'user',
-            limit: 20,
-        });
+export const fetchSearchDemoUsers = createAsyncThunk('demo/fetch', async (_, { getState }) => {
+    const { loading, keyword } = (getState() as DemoRootState).demoUser;
+    if (loading !== 'pending') {
+        return;
     }
-);
+    return await jamespot.search.searchQuery({
+        keywords: keyword === '' ? '*' : keyword,
+        category: 'user',
+        limit: 20,
+    });
+});
 
 export const demoUserSlice = createSlice({
     name: 'demoUser',

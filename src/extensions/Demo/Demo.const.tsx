@@ -4,5 +4,5 @@
  */
 export const DemoAppConst = {
     route: 'boilerplate/demo',
-    reducerName: 'demoUser'
+    reducerName: 'demoUser',
 };

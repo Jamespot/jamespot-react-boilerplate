@@ -78,7 +78,7 @@ module.exports = (env) => ({
             env.NODE_ENV === 'production' || (env.NODE_ENV === 'development' && env.NODE_RUN === 'VM')
                 ? '/react-extensions/'
                 : env.NODE_ENV === 'development'
-                    ? 'http://localhost:3041/'
-                    : /* env.NODE_ENV === "theme" */ '/themes/EXT-reactjs/js/jamespot-react-core/',
+                ? 'http://localhost:3041/'
+                : /* env.NODE_ENV === "theme" */ '/themes/EXT-reactjs/js/jamespot-react-core/',
     },
 });

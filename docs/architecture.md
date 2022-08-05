@@ -7,9 +7,9 @@ développées avec le projet Jamespot React Boilerplate (JRB) se basant sur la s
 
 La stack React Jamespot est composée des projets suivants :
 
-- [jamespot-user-api](https://www.npmjs.com/package/jamespot-user-api) : utilitaire permettant de faire appel à l'api jamespot
-- [jamespot-react-component](https://www.npmjs.com/package/jamespot-react-components) : bibliothèque de composants graphiques
-- [jamespot-react-core](https://www.npmjs.com/package/jamespot-react-core) : instantie react et les différentes librairies utilisées
+-   [jamespot-user-api](https://www.npmjs.com/package/jamespot-user-api) : utilitaire permettant de faire appel à l'api jamespot
+-   [jamespot-react-component](https://www.npmjs.com/package/jamespot-react-components) : bibliothèque de composants graphiques
+-   [jamespot-react-core](https://www.npmjs.com/package/jamespot-react-core) : instantie react et les différentes librairies utilisées
 
 Ces trois projets sont en dépendances de JRB et sont disponibles publiquement sur npmjs. Elles seront installées et
 devront être utilisées pour les développements.
@@ -18,19 +18,19 @@ devront être utilisées pour les développements.
 
 <!-- TODO add configuration location / use -->
 
-| Librairie         | Usage       | Description                                                |
-|       :---:       |    :----:   |          :---                                              |
-| Babel & Webpack   | bundle      | bundle des projets                                         |
-| -                 | React       | Framework                                                  |
-| -                 | Typescript  | Le projet est typé avec Typescript                         |
-| React Router Dom  | router      | mise en place des routes                                   |
-| Redux Toolkit     | store Redux | gestion du store de l'application. Elle peut être utilisée avec Redux DevTools dans le navigateur |
-| Redux             | store Redux | nous avons déprécié son usage. Préférer Redux Toolkit      |
-| React Hook Form   | formulaires | gestion des formulaires (validation, manipulation, gestion des erreurs, etc.) |
-| Redux Form        | formulaires | nous avons déprécié son usage. Préférer React Hook Form    |
-| Styled Components | css         | stylisation css                                            |
-| React-intl        | traductions | gestion des clés de traduction                             |
-| Eslint / Prettier | qualité     | style de code Prettier
+|     Librairie     |    Usage    | Description                                                                                       |
+| :---------------: | :---------: | :------------------------------------------------------------------------------------------------ |
+|  Babel & Webpack  |   bundle    | bundle des projets                                                                                |
+|         -         |    React    | Framework                                                                                         |
+|         -         | Typescript  | Le projet est typé avec Typescript                                                                |
+| React Router Dom  |   router    | mise en place des routes                                                                          |
+|   Redux Toolkit   | store Redux | gestion du store de l'application. Elle peut être utilisée avec Redux DevTools dans le navigateur |
+|       Redux       | store Redux | nous avons déprécié son usage. Préférer Redux Toolkit                                             |
+|  React Hook Form  | formulaires | gestion des formulaires (validation, manipulation, gestion des erreurs, etc.)                     |
+|    Redux Form     | formulaires | nous avons déprécié son usage. Préférer React Hook Form                                           |
+| Styled Components |     css     | stylisation css                                                                                   |
+|    React-intl     | traductions | gestion des clés de traduction                                                                    |
+| Eslint / Prettier |   qualité   | style de code Prettier                                                                            |
 
 ## Architecture du code JRB
 
@@ -40,16 +40,16 @@ Sous src/extensions se trouve le code des extensions.
 
 Exemple : les favoris contiennent 2 extensions :
 
-- la modal présente dans le menu utilisateur
-- la page classique avec vue tableau.
+-   la modal présente dans le menu utilisateur
+-   la page classique avec vue tableau.
 
 Ces deux extensions partagent un store commun.
 
-- src/extensions/[MonApp]/index.tsx : déclare les routes, le(s) extension(s) et éventuellement le reducer associé
-- src/extensions/[MonApp]/Layout/ : componsants de types Layout ou Routes
-- src/extensions/[MonApp]/components/ : composants
-- src/extensions/[MonApp]/redux/ : reducers
-- src/extensions/[MonApp]/translation/ : traductions
+-   src/extensions/[MonApp]/index.tsx : déclare les routes, le(s) extension(s) et éventuellement le reducer associé
+-   src/extensions/[MonApp]/Layout/ : componsants de types Layout ou Routes
+-   src/extensions/[MonApp]/components/ : composants
+-   src/extensions/[MonApp]/redux/ : reducers
+-   src/extensions/[MonApp]/translation/ : traductions
 
 ## Instantiation d'une extension
 
@@ -89,11 +89,7 @@ import JRCore from 'jamespot-react-core';
 const TemplateTwoColumns = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
 export function Component() {
-    return (
-        <Button>
-            mon beau bouton
-        </Button>
-    )
+    return <Button>mon beau bouton</Button>;
 }
 ```
 

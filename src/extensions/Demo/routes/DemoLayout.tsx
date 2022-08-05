@@ -1,6 +1,6 @@
 import * as React from 'react';
 import loadResource from '../translation';
-import { DemoAppConst } from "../Demo.const";
+import { DemoAppConst } from '../Demo.const';
 import JRCore, { TwoColLayoutProps } from 'jamespot-react-core';
 
 export const TwoColLayout = JRCore.registry.getLazyComponent<TwoColLayoutProps>('TwoColLayout');
@@ -34,19 +34,13 @@ const DEMO_DESCRIPTION = {
     icon: 'icon-edit',
     color: '#EA80CA',
     label: 'DEMO_APP_TITLE',
-    description: 'DEMO_APP_DESC'
-}
+    description: 'DEMO_APP_DESC',
+};
 
 /**
  * The layout defines how your app is going to be presented. You may use the TwoColLayout or a custom one.
  * The TwoColLayout handles a left app descriptive column and a main one.
  */
 export default () => {
-    return (
-        <TwoColLayout
-            description={DEMO_DESCRIPTION}
-            routes={ROUTES}
-            extensionRoute={DemoAppConst.route}
-        />
-    );
+    return <TwoColLayout description={DEMO_DESCRIPTION} routes={ROUTES} extensionRoute={DemoAppConst.route} />;
 };

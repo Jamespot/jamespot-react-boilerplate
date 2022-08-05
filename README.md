@@ -36,9 +36,9 @@ Pour accéder à l'extension qui tourne sur votre serveur local sur votre platef
 
 **[Créer une plateforme de test](https://launch.jamespot.com/?utm_source=jamespot.io&utm_medium=react&utm_campaign=documentation) Jamespot**. Installez et configurer l'application "Extension UI React" :
 
-- cliquer sur le menu utilisateur > administration > applications
-- Installer l'application "Extension UI React"
-- Activer l'application et renseigner l'url http://localhost:3041 puis enregistrer
+-   cliquer sur le menu utilisateur > administration > applications
+-   Installer l'application "Extension UI React"
+-   Activer l'application et renseigner l'url http://localhost:3041 puis enregistrer
 
 Après avoir lancé le serveur webpack (étape précédente), vous devriez avoir accès à votre application à l'url suivante : https://<plateforme>/ng/rr/
 

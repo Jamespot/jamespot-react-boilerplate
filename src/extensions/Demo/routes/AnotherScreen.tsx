@@ -5,8 +5,10 @@ import * as React from 'react';
  */
 function AnotherScreen() {
     return (
-        <p>N'hésitez pas à modifier ce fichier <pre>./src/extensions/Demo/routes/AnotherScreen.tsx</pre>.</p>
-    )
+        <p>
+            N'hésitez pas à modifier ce fichier <pre>./src/extensions/Demo/routes/AnotherScreen.tsx</pre>.
+        </p>
+    );
 }
 
 export default AnotherScreen;

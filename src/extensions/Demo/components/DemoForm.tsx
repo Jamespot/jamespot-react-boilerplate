@@ -27,10 +27,7 @@ export type DemoFomProps = {
     keyword: string;
 };
 
-const InputTitle =
-    JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>(
-        'InputText'
-    );
+const InputTitle = JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>('InputText');
 const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
 export const DemoForm: React.FC<any> = () => {
