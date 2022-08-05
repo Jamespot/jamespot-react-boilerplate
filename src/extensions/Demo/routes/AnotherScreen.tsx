@@ -6,7 +6,8 @@ import * as React from 'react';
 function AnotherScreen() {
     return (
         <p>
-            N'hésitez pas à modifier ce fichier <pre>./src/extensions/Demo/routes/AnotherScreen.tsx</pre>.
+            N'hésitez pas à modifier ce fichier{' '}
+            <pre style={{ display: 'inline' }}>./src/extensions/Demo/routes/AnotherScreen.tsx</pre>.
         </p>
     );
 }
