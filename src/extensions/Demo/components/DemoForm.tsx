@@ -10,7 +10,7 @@ import JRCore from 'jamespot-react-core';
 /**
  * The components are styled with direct styling or with styled components
  */
-const FormContainer = styled.div`
+const FormContainer = styled.form`
     display: flex;
 `;
 
@@ -37,9 +37,11 @@ export const DemoForm: React.FC<any> = () => {
     const dispatch = useDispatch();
     const intl = useIntl();
 
-    function handleSearchUsers() {
+    function handleSearchUsers(e) {
+        e.preventDefault();
         dispatch(fetchSearchDemoUsers());
     }
+
     const { control } = useForm<DemoFomProps>({
         defaultValues: {
             keyword: '',
@@ -57,7 +59,7 @@ export const DemoForm: React.FC<any> = () => {
     }, [keyword]);
 
     return (
-        <FormContainer>
+        <FormContainer onSubmit={handleSearchUsers}>
             <InputWrapper>
                 <InputTitle
                     name="keyword"
@@ -69,7 +71,7 @@ export const DemoForm: React.FC<any> = () => {
                 />
             </InputWrapper>
             <ButtonWrapper>
-                <Button onClick={handleSearchUsers}>
+                <Button type="submit">
                     <FormattedMessage id="DEMO_SEARCH" />
                 </Button>
             </ButtonWrapper>

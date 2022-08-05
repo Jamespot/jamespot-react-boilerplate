@@ -7,9 +7,9 @@ développées avec le projet Jamespot React Boilerplate (JRB) se basant sur la s
 
 La stack React Jamespot est composée des projets suivants :
 
-- jamespot-user-api : utilitaire permettant de faire appel à l'api jamespot
-- jamespot-react-component : bibliothèque de composants graphiques
-- jamespot-react-core : instantie react et les différentes librairies utilisées
+- [jamespot-user-api](https://www.npmjs.com/package/jamespot-user-api) : utilitaire permettant de faire appel à l'api jamespot
+- [jamespot-react-component](https://www.npmjs.com/package/jamespot-react-components) : bibliothèque de composants graphiques
+- [jamespot-react-core](https://www.npmjs.com/package/jamespot-react-core) : instantie react et les différentes librairies utilisées
 
 Ces trois projets sont en dépendances de JRB et sont disponibles publiquement sur npmjs. Elles seront installées et
 devront être utilisées pour les développements.

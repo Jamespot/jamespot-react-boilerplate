@@ -24,7 +24,7 @@ function Example() {
         <>
             <Link to="/ng/rr/boilerplate/demo/another-screen">Accéder à la deuxième page de démonstration</Link>
             <DemoForm />
-            {!loading && <Results results={entities} />}
+            {loading === "idle" && <Results results={entities} />}
         </>
     )
 }

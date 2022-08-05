@@ -1,7 +1,9 @@
 import * as React from 'react';
 import loadResource from '../translation';
-import JRCCore from "jamespot-react-core";
 import { DemoAppConst } from "../Demo.const";
+import JRCore, { TwoColLayoutProps } from 'jamespot-react-core';
+
+export const TwoColLayout = JRCore.registry.getLazyComponent<TwoColLayoutProps>('TwoColLayout');
 
 loadResource();
 
@@ -31,7 +33,7 @@ export const ROUTES = {
 const DEMO_DESCRIPTION = {
     icon: 'icon-edit',
     color: '#EA80CA',
-    title: 'DEMO_APP_TITLE',
+    label: 'DEMO_APP_TITLE',
     description: 'DEMO_APP_DESC'
 }
 
@@ -41,7 +43,7 @@ const DEMO_DESCRIPTION = {
  */
 export default () => {
     return (
-        <JRCCore.TwoColLayout
+        <TwoColLayout
             description={DEMO_DESCRIPTION}
             routes={ROUTES}
             extensionRoute={DemoAppConst.route}

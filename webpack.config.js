@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const EXTERNALS = require('./node_modules/jamespot-react-components/externals.json');
+const COMPONENTS_EXTERNALS = require('./node_modules/jamespot-react-components/externals.json');
+const CORE_EXTERNALS = require('./node_modules/jamespot-react-core/externals.json');
+const EXTERNALS = { ...COMPONENTS_EXTERNALS, ...CORE_EXTERNALS };
 
 module.exports = (env) => ({
     mode: env.NODE_ENV || 'none',
