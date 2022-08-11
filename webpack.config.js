@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const EXTERNALS = require('./node_modules/jamespot-react-components/externals.json');
+const COMPONENTS_EXTERNALS = require('./node_modules/jamespot-react-components/externals.json');
+const CORE_EXTERNALS = require('./node_modules/jamespot-react-core/externals.json');
+const EXTERNALS = { ...COMPONENTS_EXTERNALS, ...CORE_EXTERNALS };
 
 module.exports = (env) => ({
     mode: env.NODE_ENV || 'none',
@@ -76,7 +78,7 @@ module.exports = (env) => ({
             env.NODE_ENV === 'production' || (env.NODE_ENV === 'development' && env.NODE_RUN === 'VM')
                 ? '/react-extensions/'
                 : env.NODE_ENV === 'development'
-                    ? 'http://localhost:3041/'
-                    : /* env.NODE_ENV === "theme" */ '/themes/EXT-reactjs/js/jamespot-react-core/',
+                ? 'http://localhost:3041/'
+                : /* env.NODE_ENV === "theme" */ '/themes/EXT-reactjs/js/jamespot-react-core/',
     },
 });

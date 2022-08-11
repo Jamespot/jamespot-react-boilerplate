@@ -1,26 +1,8 @@
-import {
-    createAsyncThunk,
-    createSlice,
-    EnhancedStore,
-    PayloadAction,
-} from '@reduxjs/toolkit';
-import jamespot from 'jamespot-user-api';
+import { createAsyncThunk, createSlice, EnhancedStore, PayloadAction } from '@reduxjs/toolkit';
+import jamespot, { Little, Result } from 'jamespot-user-api';
 
 export type DemoState = {
-    entities: {
-        id: number;
-        title: string;
-        type: string;
-        uri: string;
-        mainType: string;
-        _cssColor: string;
-        _cssClass: string;
-        url: string;
-        firstname: string;
-        lastname: string;
-        company: string;
-        mail: string;
-    }[];
+    entities: Array<Little>;
     loading: 'idle' | 'pending';
     keyword: string;
 };
@@ -29,25 +11,22 @@ export type DemoRootState = {
 };
 export type DemoStore = EnhancedStore<DemoState>;
 
-export const fetchSearchDemoUsers = createAsyncThunk(
-    'demo/fetch',
-    async (_, { getState }) => {
-        const { loading, keyword } = (getState() as DemoRootState).demoUser;
-        if (loading !== 'pending') {
-            return;
-        }
-        return await jamespot.search.searchQuery({
-            keywords: keyword === '' ? '*' : keyword,
-            category: 'user',
-            limit: 20,
-        });
+export const fetchSearchDemoUsers = createAsyncThunk('demo/fetch', async (_, { getState }) => {
+    const { loading, keyword } = (getState() as DemoRootState).demoUser;
+    if (loading !== 'pending') {
+        return;
     }
-);
+    return await jamespot.search.searchQuery({
+        keywords: keyword === '' ? '*' : keyword,
+        category: 'user',
+        limit: 20,
+    });
+});
 
 export const demoUserSlice = createSlice({
     name: 'demoUser',
     initialState: {
-        entities: [],
+        entities: [] as Array<Result>,
         loading: 'idle',
         keyword: '',
     },
@@ -58,7 +37,7 @@ export const demoUserSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchSearchDemoUsers.pending, (state, action) => {
+            .addCase(fetchSearchDemoUsers.pending, (state) => {
                 if (state.loading === 'idle') {
                     state.loading = 'pending';
                 }
@@ -66,10 +45,10 @@ export const demoUserSlice = createSlice({
             .addCase(fetchSearchDemoUsers.fulfilled, (state, action) => {
                 if (state.loading === 'pending') {
                     state.loading = 'idle';
-                    state.entities = action.payload.result.results;
+                    state.entities = action.payload?.result.results || [];
                 }
             })
-            .addCase(fetchSearchDemoUsers.rejected, (state, action) => {
+            .addCase(fetchSearchDemoUsers.rejected, (state) => {
                 if (state.loading === 'pending') {
                     state.loading = 'idle';
                 }

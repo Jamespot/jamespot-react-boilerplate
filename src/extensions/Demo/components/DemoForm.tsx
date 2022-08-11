@@ -7,7 +7,10 @@ import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import JRCore from 'jamespot-react-core';
 
-const FormContainer = styled.div`
+/**
+ * The components are styled with direct styling or with styled components
+ */
+const FormContainer = styled.form`
     display: flex;
 `;
 
@@ -24,19 +27,18 @@ export type DemoFomProps = {
     keyword: string;
 };
 
-const InputTitle =
-    JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>(
-        'InputText'
-    );
+const InputTitle = JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>('InputText');
 const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
 export const DemoForm: React.FC<any> = () => {
     const dispatch = useDispatch();
     const intl = useIntl();
 
-    function handleSearchUsers() {
+    function handleSearchUsers(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
         dispatch(fetchSearchDemoUsers());
     }
+
     const { control } = useForm<DemoFomProps>({
         defaultValues: {
             keyword: '',
@@ -54,7 +56,7 @@ export const DemoForm: React.FC<any> = () => {
     }, [keyword]);
 
     return (
-        <FormContainer>
+        <FormContainer onSubmit={handleSearchUsers}>
             <InputWrapper>
                 <InputTitle
                     name="keyword"
@@ -66,7 +68,7 @@ export const DemoForm: React.FC<any> = () => {
                 />
             </InputWrapper>
             <ButtonWrapper>
-                <Button onClick={handleSearchUsers}>
+                <Button type="submit">
                     <FormattedMessage id="DEMO_SEARCH" />
                 </Button>
             </ButtonWrapper>
