@@ -30,7 +30,7 @@ export type DemoFomProps = {
 const InputTitle = JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>('InputText');
 const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
-export const DemoForm: React.FC<any> = () => {
+export function DemoForm() {
     const dispatch = useDispatch();
     const intl = useIntl();
 
@@ -53,7 +53,7 @@ export const DemoForm: React.FC<any> = () => {
 
     React.useEffect(() => {
         dispatch(setKeyword(keyword));
-    }, [keyword]);
+    }, [dispatch, keyword]);
 
     return (
         <FormContainer onSubmit={handleSearchUsers}>
@@ -64,7 +64,7 @@ export const DemoForm: React.FC<any> = () => {
                         id: 'DEMO_SEARCH_USER',
                     })}
                     rules={{ required: true }}
-                    control={control as any}
+                    control={control}
                 />
             </InputWrapper>
             <ButtonWrapper>
@@ -74,4 +74,4 @@ export const DemoForm: React.FC<any> = () => {
             </ButtonWrapper>
         </FormContainer>
     );
-};
+}

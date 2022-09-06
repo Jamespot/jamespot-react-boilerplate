@@ -14,7 +14,7 @@ function Example() {
 
     React.useEffect(() => {
         dispatch(fetchSearchDemoUsers());
-    }, []);
+    }, [dispatch]);
 
     const { entities, loading } = useSelector((state: DemoRootState) => state.demoUser);
 
