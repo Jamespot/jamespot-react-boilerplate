@@ -10,10 +10,6 @@ module.exports = {
         'prettier',
     ],
     rules: {
-        '@typescript-eslint/no-namespace': ['off'],
-        '@typescript-eslint/no-empty-interface': ['off'],
-        '@typescript-eslint/ban-types': ['off'],
-        'no-case-declarations': ['off'],
         'no-console': ['error', { allow: ['warn', 'error'] }],
     },
 };
