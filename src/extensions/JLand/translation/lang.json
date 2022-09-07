@@ -1,0 +1,21 @@
+{
+    "en": {
+        "GLOBAL_Filter": "Filter",
+
+        "APP_JLand_Tab_Logs": "Logs",
+        "APP_JLand_Tab_Stats": "Statistics",
+
+        "APP_JLand_Logs_Title": "Logs",
+        "APP_JLand_Logs_DateEnd": "Load logs before date",
+        "APP_JLand_Logs_TableCol_Id": "Id",
+        "APP_JLand_Logs_TableCol_Date": "Date",
+        "APP_JLand_Logs_TableCol_Map": "Map",
+        "APP_JLand_Logs_TableCol_Mail": "Mail",
+
+        "APP_JLand_Stats_Title": "Statistics of the office",
+        "APP_JLand_Stats_DateStart": "Load stats between",
+        "APP_JLand_Stats_DateEnd": "and",
+        "APP_JLand_Stats_TableCol_Mail": "Mail",
+        "APP_JLand_Stats_TableCol_Cnt": "Count"
+    }
+}
