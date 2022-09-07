@@ -23,7 +23,7 @@ export const ROUTES = {
 };
 
 export default () => {
-    const JLAND = J.applications.find((app) => app.name === JLandAppConst.moduleName);
+    const JLAND = J.applications.find((app) => app.name === "JLandHook");
 
-    return <TwoColLayout description={JLAND} routes={ROUTES} extensionRoute={JLandAppConst.route} />;
+    return JLAND ? <TwoColLayout description={JLAND} routes={ROUTES} extensionRoute={JLandAppConst.route} /> : <></>;
 };

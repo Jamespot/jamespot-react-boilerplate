@@ -25,7 +25,7 @@ const _columns = [
     {
         Header: 'APP_JLand_Logs_TableCol_Date',
         id: 'dateCreation',
-        accessor: (log) => <DateDisplay date={log.dateCreation} format="date-time-sec" />,
+        accessor: (log: {dateCreation: string}) => <DateDisplay date={log.dateCreation} format="date-time-sec" />,
     },
     {
         Header: 'APP_JLand_Logs_TableCol_Map',
@@ -80,7 +80,7 @@ export default function JLandLog() {
                 }
             }
         });
-    }, [filters.idLogMax, filters.dateEnd]);
+    }, [filters]);
 
     const config = {
         pagination: {
