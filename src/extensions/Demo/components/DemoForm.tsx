@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
-import { fetchSearchDemoUsers, setKeyword } from '../redux/demoUser.slice';
+// import { fetchSearchDemoUsers, setKeyword } from '../redux/demoUser.slice';
 import { JRCButtonProps, JRCInputFieldProps } from 'jamespot-react-components';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import JRCore from 'jamespot-react-core';
+import {fetchSearchUsers, setKeyword} from "jamespot-front-business";
 
 /**
  * The components are styled with direct styling or with styled components
@@ -36,7 +37,7 @@ export function DemoForm() {
 
     function handleSearchUsers(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        dispatch(fetchSearchDemoUsers());
+        dispatch(fetchSearchUsers());
     }
 
     const { control } = useForm<DemoFomProps>({

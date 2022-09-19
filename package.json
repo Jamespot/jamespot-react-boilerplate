@@ -82,6 +82,7 @@
         "dot-prop-immutable": "^2.1.0",
         "escape-string-regexp": "^1.0.5",
         "file-loader": "^6.2.0",
+        "jamespot-front-business": "file:../jamespot-front-business",
         "jamespot-react-components": "^1.0.66",
         "jamespot-react-core": "^1.1.52",
         "jamespot-user-api": "^1.0.44",

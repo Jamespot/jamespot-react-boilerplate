@@ -21,6 +21,7 @@ export const ROUTES = {
         label: 'APP_JLand_Tab_Stats',
     },
 };
+console.log('!!')
 
 export default () => {
     const JLAND = J.applications.find((app) => app.name === "JLandHook");

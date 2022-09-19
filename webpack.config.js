@@ -17,6 +17,7 @@ module.exports = (env) => ({
         port: 3041,
         headers: {
             'Access-Control-Allow-Origin': '*',
+            'Content-type': 'text/javascript'
         },
     },
     resolve: {

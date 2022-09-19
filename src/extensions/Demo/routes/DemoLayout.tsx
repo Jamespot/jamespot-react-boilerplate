@@ -7,23 +7,16 @@ export const TwoColLayout = JRCore.registry.getLazyComponent<TwoColLayoutProps>(
 
 loadResource();
 
+import { demoUserSlice } from '../redux/demoUser.slice';
+import {userSlice, wordReducer} from "jamespot-front-business";
+import {ROUTES} from "../index";
 /**
- * Details of the app routes configured in index.tsx
+ * Load reducer if any
  */
-export const ROUTES = {
-    EXAMPLE: {
-        path: '',
-        key: 'EXAMPLE',
-        icon: 'fs-reporting',
-        label: 'APP_Demo_Tab_Example',
-    },
-    ANOTHER_SCREEN: {
-        path: 'another-screen',
-        key: 'ANOTHER_SCREEN',
-        icon: 'fs-table-group',
-        label: 'APP_Demo_Tab_AnotherScreen',
-    },
-};
+JRCore.store.add('demoUser', demoUserSlice.reducer);
+JRCore.store.add('demoUser2', userSlice.reducer);
+JRCore.store.add('word', wordReducer);
+JRCore.store.add('word2', wordReducer);
 
 /**
  * App description that will be displayed in the left column

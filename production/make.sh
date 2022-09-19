@@ -8,9 +8,9 @@
 # Exemple : 
 #
 #
-# export PLATFORM_NAME=yourplatform.jamespot.pro
-# export MODULE_NAME=EXT-modulename
-# export MODULE_KEY=0123456789
+export PLATFORM_NAME=yourplatform.jamespot.pro
+export MODULE_NAME=EXT-modulename
+export MODULE_KEY=0123456789
 #
 # ----------------------------------------------------
 

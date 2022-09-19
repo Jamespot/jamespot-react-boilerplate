@@ -4,6 +4,7 @@ import { Results } from '../components/DemoResults';
 import { useDispatch, useSelector } from 'react-redux';
 import { DemoRootState, fetchSearchDemoUsers } from '../redux/demoUser.slice';
 import { Link } from 'react-router-dom';
+import {fetchSearchUsers, ONE_STRING, setWord, UserRootState, WordState} from "jamespot-front-business";
 
 /**
  * This component is one of the entry of your application
@@ -14,15 +15,30 @@ function Example() {
 
     React.useEffect(() => {
         dispatch(fetchSearchDemoUsers());
+        dispatch(fetchSearchUsers());
+        dispatch(setWord());
     }, [dispatch]);
 
-    const { entities, loading } = useSelector((state: DemoRootState) => state.demoUser);
+    const { entities, loading } = useSelector((state: DemoRootState) => {
+        console.log(state);
+        return state.demoUser;
+    });
+
+    const { entities: entities2, loading: loading2 } = useSelector((state: UserRootState) => {
+        console.log(state);
+        return state.demoUser2;
+    });
+    const { word } = useSelector((state: { word: WordState }) => state.word);
 
     return (
         <>
+            <p>{ONE_STRING}-{word}</p>
+            <button onClick={() => dispatch(setWord())}>button</button>
             <Link to="/ng/rr/boilerplate/demo/another-screen">Accéder à la deuxième page de démonstration</Link>
             <DemoForm />
             {loading === 'idle' && <Results results={entities} />}
+            <br/>
+            {loading2 === 'idle' && <Results results={entities2} />}
         </>
     );
 }
