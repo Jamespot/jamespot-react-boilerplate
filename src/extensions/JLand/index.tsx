@@ -1,7 +1,7 @@
 import React from 'react';
 import { JLandAppConst } from './jland.const';
 import JRCore from 'jamespot-react-core';
-import { ROUTES } from './JLand.app';
+import { ROUTES } from './jland.const';
 
 if (J.applications.find((app) => JLandAppConst.moduleName === app.name)) {
     const Layout = React.lazy(() => import('./JLand.app'));

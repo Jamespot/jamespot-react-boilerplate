@@ -7,7 +7,7 @@ const EXTERNALS = { ...COMPONENTS_EXTERNALS, ...CORE_EXTERNALS };
 
 module.exports = (env) => ({
     mode: env.NODE_ENV || 'none',
-    watch: env.WATCH === 'true' ? true : false,
+    watch: env.WATCH === 'true',
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: 'source-map',
