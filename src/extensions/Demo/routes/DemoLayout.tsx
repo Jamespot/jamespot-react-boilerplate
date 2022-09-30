@@ -14,7 +14,7 @@ import {ROUTES} from "../index";
  * Load reducer if any
  */
 JRCore.store.add('demoUser', demoUserSlice.reducer);
-JRCore.store.add('demoUser2', userSlice.reducer);
+JRCore.store.add(userSlice.name, userSlice.reducer);
 JRCore.store.add('word', wordReducer);
 JRCore.store.add('word2', wordReducer);
 

@@ -20,13 +20,13 @@ function Example() {
     }, [dispatch]);
 
     const { entities, loading } = useSelector((state: DemoRootState) => {
-        console.log(state);
+        // console.log(state);
         return state.demoUser;
     });
 
     const { entities: entities2, loading: loading2 } = useSelector((state: UserRootState) => {
         console.log(state);
-        return state.demoUser2;
+        return state.user;
     });
     const { word } = useSelector((state: { word: WordState }) => state.word);
 
