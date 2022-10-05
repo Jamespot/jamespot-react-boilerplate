@@ -7,7 +7,7 @@ const EXTERNALS = { ...COMPONENTS_EXTERNALS, ...CORE_EXTERNALS };
 
 module.exports = (env) => ({
     mode: env.NODE_ENV || 'none',
-    watch: env.WATCH === 'true' ? true : false,
+    watch: env.WATCH === 'true',
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: 'source-map',
@@ -77,8 +77,6 @@ module.exports = (env) => ({
         publicPath:
             env.NODE_ENV === 'production' || (env.NODE_ENV === 'development' && env.NODE_RUN === 'VM')
                 ? '/react-extensions/'
-                : env.NODE_ENV === 'development'
-                ? 'http://localhost:3041/'
-                : /* env.NODE_ENV === "theme" */ '/themes/EXT-reactjs/js/jamespot-react-core/',
+                : 'http://localhost:3041/'
     },
 });

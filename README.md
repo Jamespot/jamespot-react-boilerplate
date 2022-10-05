@@ -42,9 +42,12 @@ Après avoir lancé le serveur webpack (étape précédente), vous devriez avoir
 
 ## Mise en production de l'application
 
-Coming later
+Pour la livraison de votre extension, il faudra produire le bundle javascript et l'uploader sur la plateforme destination. Cela place votre plateforme dans le thème "React JS" qui contiendra votre bundle.
 
-```shell
-# build project
-npm run build
-```
+Pour cela vous devrez :
+- produire le bundle : `npm run build`
+- renseigner les variables dans le script `production/make.sh`
+- utiliser le script `production/make.sh`. Cela upload votre bundle, crée le thème "React JS"  qui va contenir votre bundle, et paramètre la plateforme pour utiliser ce thème.
+- paramétrer l'application "Extension UI React" pour déclarer que l'extension est disponible à l'adresse suivante : `/themes/EXT-reactjs/js/jamespot-react-extensions`
+
+L'application devrait maintenant être disponible !

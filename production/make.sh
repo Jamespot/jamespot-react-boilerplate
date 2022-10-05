@@ -1,18 +1,15 @@
 #!/bin/bash
 
 # ----------------------------------------------------
-# Needed environment variables 
-#
-# $PLATFORM_NAME,  $MODULE_NAME, $MODULE_KEY
-#
-# Exemple : 
-#
-#
-# export PLATFORM_NAME=yourplatform.jamespot.pro
-# export MODULE_NAME=EXT-modulename
-# export MODULE_KEY=0123456789
-#
+# Provide your own environment variables
+# PlATFORM_NAME in the form of https://<platform>.jamespot.pro
+# MODULE_NAME in the form of EXT-<module name> as defined in the platform (Administration > Développeur > Modules)
+# MODULE_KEY as defined in the platform (Administration > Développeur > Modules)
 # ----------------------------------------------------
+
+export PLATFORM_NAME=k2018-1.jamespot.pro
+export MODULE_NAME=EXT-react
+export MODULE_KEY=azertyuiop
 
 rm -rf ../dist
 mkdir -p ../dist/js/jamespot-react-extensions
@@ -36,6 +33,6 @@ curl -s --location -g --request POST "https://$PLATFORM_NAME/api/api.php" \
 --form 'v="2.0"' \
 --form 'o="global"' \
 --form 'f="customTheme"' \
---form 'theme_zip=@"./theme.zip"' | jq .
+--form 'theme_zip=@"../dist/theme.zip"' | jq .
 
 
