@@ -8,8 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 const EmptyComponent = (props: any) => {
     return <>{props.children}</>;
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const mockRegistry = (name: string): any => {
+const mockRegistry = (_name: string): any => {
     return EmptyComponent;
 };
 (global as any).J = {

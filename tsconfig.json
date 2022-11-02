@@ -2,7 +2,6 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "outDir": "./build",
-        "noImplicitAny": true,
         "module": "esnext",
         "moduleResolution": "node",
         "target": "es6",
@@ -10,7 +9,26 @@
         "declaration": true,
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
-        "strict": true
+        // Strict Checks
+        "strict": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "alwaysStrict": true,
+        "exactOptionalPropertyTypes": false, // TODO - turn true
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "noUncheckedIndexedAccess": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "useUnknownInCatchVariables": true,
     },
     "includes": ["src"],
     "types": []
