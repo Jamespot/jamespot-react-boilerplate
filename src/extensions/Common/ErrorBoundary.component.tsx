@@ -1,9 +1,5 @@
-import React from 'react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 import styled from 'styled-components';
-
-type Props = {
-    children: React.ReactNode;
-};
 
 const ErrorMessage = styled.div`
     height: 40px;
@@ -15,24 +11,34 @@ const ErrorMessage = styled.div`
     margin: 5px;
 `;
 
-class ErrorBoundary extends React.Component<Props, { hasError: boolean }> {
-    constructor(props: Props) {
-        super(props);
-        this.state = { hasError: false };
-    }
+interface Props {
+    children?: ReactNode;
+}
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    static getDerivedStateFromError(error: Error) {
+interface State {
+    hasError: boolean;
+}
+
+class ErrorBoundary extends Component<Props, State> {
+    public override state: State = {
+        hasError: false
+    };
+
+    public static getDerivedStateFromError(_: Error): State {
         return { hasError: true };
     }
-    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        console.error(error, errorInfo);
+
+    public override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        console.error("Uncaught error:", error, errorInfo);
     }
-    render() {
+
+    public override render() {
         if (this.state.hasError) {
             return <ErrorMessage>Oups, une erreur est survenue</ErrorMessage>;
         }
+
         return this.props.children;
     }
 }
+
 export default ErrorBoundary;
