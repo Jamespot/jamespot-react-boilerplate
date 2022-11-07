@@ -23,11 +23,11 @@ const ButtonWrapper = styled.div`
     line-height: 99px;
 `;
 
-export type DemoFomProps = {
+export type DemoFormProps = {
     keyword: string;
 };
 
-const InputTitle = JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFomProps>>('InputText');
+const InputTitle = JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFormProps>>('InputText');
 const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
 
 export function DemoForm() {
@@ -39,7 +39,7 @@ export function DemoForm() {
         dispatch(fetchSearchDemoUsers());
     }
 
-    const { control } = useForm<DemoFomProps>({
+    const { control } = useForm<DemoFormProps>({
         defaultValues: {
             keyword: '',
         },
