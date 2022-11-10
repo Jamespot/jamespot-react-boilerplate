@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
 import { fetchSearchDemoUsers, setKeyword } from '../redux/demoUser.slice';
-import { JRCButtonProps, JRCInputFieldProps } from 'jamespot-react-components';
 import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
 import JRCore from 'jamespot-react-core';
@@ -27,8 +26,8 @@ export type DemoFormProps = {
     keyword: string;
 };
 
-const InputTitle = JRCore.registry.getLazyComponent<JRCInputFieldProps<DemoFormProps>>('InputText');
-const Button = JRCore.registry.getLazyComponent<JRCButtonProps>('Button');
+const InputText = JRCore.registry.getLazyComponent('InputText');
+const Button = JRCore.registry.getLazyComponent('Button');
 
 export function DemoForm() {
     const dispatch = useDispatch();
@@ -58,7 +57,7 @@ export function DemoForm() {
     return (
         <FormContainer onSubmit={handleSearchUsers}>
             <InputWrapper>
-                <InputTitle
+                <InputText
                     name="keyword"
                     label={intl.formatMessage({
                         id: 'DEMO_SEARCH_USER',
