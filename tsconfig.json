@@ -28,7 +28,7 @@
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "useUnknownInCatchVariables": true,
+        "useUnknownInCatchVariables": true
     },
     "includes": ["src"],
     "types": []

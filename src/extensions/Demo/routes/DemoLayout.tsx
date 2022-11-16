@@ -1,9 +1,9 @@
 import * as React from 'react';
 import loadResource from '../translation';
 import { DemoAppConst } from '../Demo.const';
-import JRCore, { TwoColLayoutProps } from 'jamespot-react-core';
+import JRCore from 'jamespot-react-core';
 
-export const TwoColLayout = JRCore.registry.getLazyComponent<TwoColLayoutProps>('TwoColLayout');
+export const TwoColLayout = JRCore.registry.getLazyComponent('TwoColLayout');
 
 loadResource();
 

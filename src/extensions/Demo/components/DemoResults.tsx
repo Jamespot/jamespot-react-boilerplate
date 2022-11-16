@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { Little } from 'jamespot-user-api';
-import { JRCTagProps } from 'jamespot-react-components';
 import JRCore from 'jamespot-react-core';
 
-const Tag = JRCore.registry.getLazyComponent<JRCTagProps<Little>>('Tag');
+const Tag = JRCore.registry.getLazyComponent('Tag');
 
 export const Results = ({ results }: { results: Little[] }) => {
     return (
