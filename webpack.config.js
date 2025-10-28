@@ -45,15 +45,7 @@ module.exports = (env) => ({
   },
   watchOptions: {
     aggregateTimeout: 1000,
-    ignored: [
-      '**/node_modules/**',
-      '**/build/**',
-      '**/coverage/**',
-      '**/.vscode/**',
-      '**/.github/**',
-      '**/.tscache/**',
-      '**/.husky/**',
-    ],
+    ignored: ['**/node_modules/**', '**/build/**', '**/docs/**', '**/production/**'],
   },
   module: {
     rules: [
@@ -81,18 +73,6 @@ module.exports = (env) => ({
     ],
   },
   plugins,
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
-  },
   externals: EXTERNALS,
   entry: {
     app: './src/App.tsx',
@@ -109,6 +89,6 @@ module.exports = (env) => ({
         ? '/react-extensions/'
         : env.NODE_ENV === 'development'
           ? 'http://localhost:3040/'
-          : /* env.NODE_ENV === "theme" */ '/themes/EXT-reactjs/js/jamespot-react-core/',
+          : '/themes/EXT-reactjs/js/jamespot-react-core/',
   },
 });

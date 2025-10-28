@@ -1,10 +1,9 @@
-import { jObjectLittle } from 'jamespot-user-api';
+import { jUserLittle } from 'jamespot-user-api';
 
-export type DemoState = {
-  entities: jObjectLittle[];
+export type DemoUserState = {
+  entities: jUserLittle[];
   loading: 'idle' | 'pending';
-  keyword: string;
 };
-export type DemoRootState = {
-  demoUser: DemoState;
+export type DemoUserRootState = {
+  demoUser: DemoUserState;
 };

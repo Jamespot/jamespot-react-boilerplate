@@ -1,7 +1,7 @@
 import { jCore } from '../../libraries';
 import { DemoAppConst, ROUTES } from './Demo.const';
 
-export const TwoColLayout = jCore.registry.getLazyComponent('TwoColLayout');
+const TwoColLayout = jCore.registry.getLazyComponent('TwoColLayout');
 
 /**
  * App description that will be displayed in the left column

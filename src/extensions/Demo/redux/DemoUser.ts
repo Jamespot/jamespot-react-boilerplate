@@ -1,35 +1,33 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ApiWrapper, jObjectLittle, SearchQueryResult } from 'jamespot-user-api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { ApiPagingResults, jUserLittle } from 'jamespot-user-api';
+import { DemoUserState } from './DemoUser.types';
 import { ThunkExtensionsConfig } from './Store.types';
 
 export const fetchSearchDemoUsers = createAsyncThunk<
-  ApiWrapper<SearchQueryResult> | undefined,
-  void,
+  ApiPagingResults<jUserLittle> | undefined,
+  { query?: string },
   ThunkExtensionsConfig
->('demo/fetch', async (_, { extra, getState }) => {
-  const { loading, keyword } = getState().extensions.demoUser;
+>('demo/fetch', async (payload, { extra, getState }) => {
+  const { loading } = getState().extensions.demoUser;
   if (loading !== 'pending') {
     return;
   }
-  return await extra.jApi.search.searchQuery({
-    keywords: keyword === '' ? '*' : keyword,
-    category: 'user',
+  return await extra.jApi.user.userQueryList({
+    ...payload,
+    format: 'raw-little',
     limit: 20,
   });
 });
 
+const initialState: DemoUserState = {
+  entities: [],
+  loading: 'idle',
+};
+
 const demoUserSlice = createSlice({
   name: 'demoUser',
-  initialState: {
-    entities: [] as jObjectLittle[],
-    loading: 'idle',
-    keyword: '',
-  },
-  reducers: {
-    setKeyword: (state, action: PayloadAction<string>) => {
-      state.keyword = action.payload;
-    },
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchDemoUsers.pending, (state) => {
@@ -41,7 +39,7 @@ const demoUserSlice = createSlice({
         const payload = action.payload;
         if (state.loading === 'pending' && payload !== undefined) {
           state.loading = 'idle';
-          state.entities = payload.result.results || [];
+          state.entities = payload.result.data;
         }
       })
       .addCase(fetchSearchDemoUsers.rejected, (state) => {
@@ -51,9 +49,6 @@ const demoUserSlice = createSlice({
       });
   },
 });
-
-// Action creators are generated for each case reducer function
-export const { setKeyword } = demoUserSlice.actions;
 
 export const DemoUser = {
   slice: demoUserSlice,

@@ -1,9 +1,9 @@
-import { FormEvent, useEffect } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
+import { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { jCore } from '../../../libraries';
-import { fetchSearchDemoUsers, setKeyword } from '../redux/DemoUser';
+import { fetchSearchDemoUsers } from '../redux/DemoUser';
 import { useExtensionsDispatch } from '../redux/Store';
 
 const InputText = jCore.registry.getLazyComponent('InputText');
@@ -27,45 +27,37 @@ const ButtonWrapper = styled.div`
   margin-bottom: ${(props) => props.theme.space.xs}px;
 `;
 
-export type DemoFormProps = {
-  keyword: string;
+type DemoFormProps = {
+  query: string;
 };
 
 export function DemoForm() {
   const dispatch = useExtensionsDispatch();
   const intl = useIntl();
 
-  function handleSearchUsers(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    dispatch(fetchSearchDemoUsers());
-  }
+  const submit = useCallback(
+    (data: DemoFormProps) => {
+      dispatch(fetchSearchDemoUsers(data));
+    },
+    [dispatch],
+  );
 
-  const { control } = useForm<DemoFormProps>({
+  const { control, handleSubmit } = useForm<DemoFormProps>({
     defaultValues: {
-      keyword: '',
+      query: '',
     },
     criteriaMode: 'all',
   });
 
-  const keyword = useWatch({
-    control,
-    name: 'keyword',
-  });
-
-  useEffect(() => {
-    dispatch(setKeyword(keyword));
-  }, [dispatch, keyword]);
-
   return (
-    <FormContainer onSubmit={handleSearchUsers}>
+    <FormContainer onSubmit={handleSubmit(submit)}>
       <InputWrapper>
         <InputText
-          name="keyword"
+          name="query"
           control={control}
           label={intl.formatMessage({
             id: 'SAMPLE_Search_User',
           })}
-          rules={{ required: true }}
           margin={'0'}
         />
       </InputWrapper>
