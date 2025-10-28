@@ -1,16 +1,21 @@
-import React from 'react';
+import { jObjectLittle } from 'jamespot-user-api';
+import { jCore } from '../../../libraries';
+import styled from 'styled-components';
 
-import { Little } from 'jamespot-user-api';
-import JRCore from 'jamespot-react-core';
+const Tag = jCore.registry.getLazyComponent('Tag');
 
-const Tag = JRCore.registry.getLazyComponent('Tag');
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => props.theme.space.xs}px;
+`;
 
-export const Results = ({ results }: { results: Little[] }) => {
-    return (
-        <>
-            {results.map((entity) => (
-                <Tag key={entity.id} uri={entity.uri} label={entity.title} />
-            ))}
-        </>
-    );
+export const Results = ({ results }: { results: jObjectLittle[] }) => {
+  return (
+    <Wrapper>
+      {results.map((entity) => (
+        <Tag key={entity.id} uri={entity.uri} label={entity.title} />
+      ))}
+    </Wrapper>
+  );
 };

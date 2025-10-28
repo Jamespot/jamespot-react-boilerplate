@@ -1,76 +1,79 @@
-import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { FormEvent, useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { fetchSearchDemoUsers, setKeyword } from '../redux/demoUser.slice';
-import styled from 'styled-components';
 import { FormattedMessage, useIntl } from 'react-intl';
-import JRCore from 'jamespot-react-core';
+import styled from 'styled-components';
+import { jCore } from '../../../libraries';
+import { fetchSearchDemoUsers, setKeyword } from '../redux/DemoUser';
+import { useExtensionsDispatch } from '../redux/Store';
+
+const InputText = jCore.registry.getLazyComponent('InputText');
+const Button = jCore.registry.getLazyComponent('Button');
 
 /**
  * The components are styled with direct styling or with styled components
  */
 const FormContainer = styled.form`
-    display: flex;
+  display: flex;
+  align-items: end;
+  gap: ${(props) => props.theme.space.sm}px;
+  margin-bottom: ${(props) => props.theme.space.md}px;
 `;
 
 const InputWrapper = styled.div`
-    width: 100%;
+  flex: 1;
 `;
 
 const ButtonWrapper = styled.div`
-    height: 99px;
-    line-height: 99px;
+  margin-bottom: ${(props) => props.theme.space.xs}px;
 `;
 
 export type DemoFormProps = {
-    keyword: string;
+  keyword: string;
 };
 
-const InputText = JRCore.registry.getLazyComponent('InputText');
-const Button = JRCore.registry.getLazyComponent('Button');
-
 export function DemoForm() {
-    const dispatch = useDispatch();
-    const intl = useIntl();
+  const dispatch = useExtensionsDispatch();
+  const intl = useIntl();
 
-    function handleSearchUsers(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        dispatch(fetchSearchDemoUsers());
-    }
+  function handleSearchUsers(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    dispatch(fetchSearchDemoUsers());
+  }
 
-    const { control } = useForm<DemoFormProps>({
-        defaultValues: {
-            keyword: '',
-        },
-        criteriaMode: 'all',
-    });
+  const { control } = useForm<DemoFormProps>({
+    defaultValues: {
+      keyword: '',
+    },
+    criteriaMode: 'all',
+  });
 
-    const keyword = useWatch({
-        control,
-        name: 'keyword',
-    });
+  const keyword = useWatch({
+    control,
+    name: 'keyword',
+  });
 
-    React.useEffect(() => {
-        dispatch(setKeyword(keyword));
-    }, [dispatch, keyword]);
+  useEffect(() => {
+    dispatch(setKeyword(keyword));
+  }, [dispatch, keyword]);
 
-    return (
-        <FormContainer onSubmit={handleSearchUsers}>
-            <InputWrapper>
-                <InputText
-                    name="keyword"
-                    label={intl.formatMessage({
-                        id: 'DEMO_SEARCH_USER',
-                    })}
-                    rules={{ required: true }}
-                    control={control}
-                />
-            </InputWrapper>
-            <ButtonWrapper>
-                <Button type="submit">
-                    <FormattedMessage id="DEMO_SEARCH" />
-                </Button>
-            </ButtonWrapper>
-        </FormContainer>
-    );
+  return (
+    <FormContainer onSubmit={handleSearchUsers}>
+      <InputWrapper>
+        <InputText
+          name="keyword"
+          control={control}
+          label={intl.formatMessage({
+            id: 'SAMPLE_Search_User',
+          })}
+          rules={{ required: true }}
+          margin={'0'}
+        />
+      </InputWrapper>
+      <ButtonWrapper>
+        <Button type="submit" noMargin={true}>
+          <FormattedMessage id="SAMPLE_Search" />
+        </Button>
+      </ButtonWrapper>
+    </FormContainer>
+  );
 }

@@ -1,10 +1,12 @@
 {
-    "en": {
-        "DEMO_SEARCH_USER": "Find a user",
-        "DEMO_SEARCH": "Search",
-        "DEMO_APP_TITLE": "Boilerplate",
-        "DEMO_APP_DESC": "Just a sample app",
-        "APP_Demo_Tab_Example": "Formulaire de test",
-        "APP_Demo_Tab_AnotherScreen": "Autre page"
-    }
+  "en": {
+    "SAMPLE_Search_User": "Find a user",
+    "SAMPLE_Search": "Search",
+    "SAMPLE_App_Title": "Boilerplate",
+    "SAMPLE_App_Description": "Just a sample app",
+    "APP_Tab_Sample": "Test form",
+    "APP_Tab_Another_Screen": "Another screen",
+    "LINK_Sample": "Access to test form",
+    "ANOTHER_SCREEN_Edit_File": "You can edit this file"
+  }
 }
