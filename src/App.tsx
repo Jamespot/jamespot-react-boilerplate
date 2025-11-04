@@ -1,2 +1,3 @@
 // Import Applications extensions
-import './extensions/Demo';
+import './extensions/SampleRoute';
+import './extensions/SampleWidget';

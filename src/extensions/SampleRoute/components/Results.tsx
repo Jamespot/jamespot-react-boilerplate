@@ -1,6 +1,7 @@
 import { jObjectLittle } from 'jamespot-user-api';
-import { jCore } from '../../../libraries';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { jCore } from '../../../libraries';
 
 const Tag = jCore.registry.getLazyComponent('Tag');
 
@@ -10,7 +11,7 @@ const Wrapper = styled.div`
   gap: ${(props) => props.theme.space.xs}px;
 `;
 
-export const Results = ({ results }: { results: jObjectLittle[] }) => {
+export const Results = ({ results }: { results: jObjectLittle[] }): ReactNode => {
   return (
     <Wrapper>
       {results.map((entity) => (

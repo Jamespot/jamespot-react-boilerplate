@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { DemoForm } from '../components/DemoForm';
-import { Results } from '../components/DemoResults';
-import { fetchSearchDemoUsers } from '../redux/DemoUser';
-import { useExtensionsDispatch, useExtensionsSelector } from '../redux/Store';
+import { ReactNode, useEffect } from 'react';
 import { jCore } from '../../../libraries';
+import { Form } from '../components/Form';
+import { Results } from '../components/Results';
+import { fetchSearchSampleRouteUsers } from '../redux/SampleRouteUser';
+import { useExtensionsDispatch, useExtensionsSelector } from '../redux/Store';
 
 const Loader = jCore.registry.getLazyComponent('Loader');
 
@@ -11,18 +11,18 @@ const Loader = jCore.registry.getLazyComponent('Loader');
  * This component is one of the entry of your application
  * Here, it is a basic search / display component with basic use of a reducer & the jamespot-user-api
  */
-const Sample = () => {
+const Sample = (): ReactNode => {
   const dispatch = useExtensionsDispatch();
 
   useEffect(() => {
-    dispatch(fetchSearchDemoUsers({}));
+    dispatch(fetchSearchSampleRouteUsers({}));
   }, [dispatch]);
 
-  const { entities, loading } = useExtensionsSelector((state) => state.extensions.demoUser);
+  const { entities, loading } = useExtensionsSelector((state) => state.extensions.sampleRouteUser);
 
   return (
     <>
-      <DemoForm />
+      <Form />
       {loading === 'pending' && (
         <div>
           <Loader size="m" />

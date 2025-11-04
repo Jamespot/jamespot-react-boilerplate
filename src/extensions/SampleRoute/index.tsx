@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { jCore } from '../../libraries';
-import { DemoAppConst, ROUTES } from './Demo.const';
-import { DemoUser } from './redux/DemoUser';
+import { SampleRouteExtensionConst, ROUTES } from './SampleRoute.const';
+import { SampleRouteUser } from './redux/SampleRouteUser';
 import loadResource from './translation';
 
 const Layout = lazy(() => import('./Layout'));
@@ -13,13 +13,13 @@ loadResource();
 /**
  * Load reducer if any
  */
-jCore.store.addExtensionStore(DemoUser.slice.name, DemoUser.slice.reducer);
+jCore.store.addExtensionStore(SampleRouteUser.slice.name, SampleRouteUser.slice.reducer);
 
 /**
  * Register extension routes
  */
 jCore.router.addRoute({
-  path: DemoAppConst.route,
+  path: SampleRouteExtensionConst.route,
   element: (
     <Suspense fallback={<></>}>
       <Layout />

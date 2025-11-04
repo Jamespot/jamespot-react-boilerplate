@@ -1,9 +1,9 @@
-import { useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { jCore } from '../../../libraries';
-import { fetchSearchDemoUsers } from '../redux/DemoUser';
+import { fetchSearchSampleRouteUsers } from '../redux/SampleRouteUser';
 import { useExtensionsDispatch } from '../redux/Store';
 
 const InputText = jCore.registry.getLazyComponent('InputText');
@@ -27,22 +27,22 @@ const ButtonWrapper = styled.div`
   margin-bottom: ${(props) => props.theme.space.xs}px;
 `;
 
-type DemoFormProps = {
+type FormProps = {
   query: string;
 };
 
-export function DemoForm() {
+export const Form = (): ReactNode => {
   const dispatch = useExtensionsDispatch();
   const intl = useIntl();
 
   const submit = useCallback(
-    (data: DemoFormProps) => {
-      dispatch(fetchSearchDemoUsers(data));
+    (data: FormProps) => {
+      dispatch(fetchSearchSampleRouteUsers(data));
     },
     [dispatch],
   );
 
-  const { control, handleSubmit } = useForm<DemoFormProps>({
+  const { control, handleSubmit } = useForm<FormProps>({
     defaultValues: {
       query: '',
     },
@@ -68,4 +68,4 @@ export function DemoForm() {
       </ButtonWrapper>
     </FormContainer>
   );
-}
+};

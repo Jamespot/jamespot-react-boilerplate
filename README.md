@@ -14,13 +14,15 @@ Une extension de démonstration est disponible sur ce projet. N'hésitez pas à 
 
 ## Lancement du projet
 
-Le projet nécessite Node 20.17.0 et PNPM 9.9.0
+Le projet nécessite Node 20.17.0 et PNPM 9.9.X
 
-1. cloner le projet
-2. installer les dépendances
-3. Lancer le "serveur webpack"
+1. Installer pnpm 9.9.X
+2. Cloner le projet
+3. Installer les dépendances
+4. Lancer le "serveur webpack"
 
 ```shell
+npm -g i pnpm@latest-9
 git clone https://github.com/Jamespot/jamespot-react-boilerplate
 pnpm install --frozen-lockfile
 
@@ -36,7 +38,7 @@ pnpm dev
 - Installer l'application "Extension UI React"
 - Activer l'application et renseigner l'url de votre serveur webpack (ex: http://localhost:3040)
 
-Après avoir lancé le serveur webpack (étape précédente), vous devriez avoir accès à votre application à l'url suivante : https://< plateforme-url >/ng/rr/boilerplate/demo
+Après avoir lancé le serveur webpack (étape précédente), vous devriez avoir accès à votre application à l'url suivante : https://< plateforme-url >/ng/rr/boilerplate/sample-route
 
 ## Mise en production de l'application
 

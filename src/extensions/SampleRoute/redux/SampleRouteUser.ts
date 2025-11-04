@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ApiPagingResults, jUserLittle } from 'jamespot-user-api';
-import { DemoUserState } from './DemoUser.types';
+import { SampleRouteUserState } from './SampleRouteUser.types';
 import { ThunkExtensionsConfig } from './Store.types';
 
-export const fetchSearchDemoUsers = createAsyncThunk<
+export const fetchSearchSampleRouteUsers = createAsyncThunk<
   ApiPagingResults<jUserLittle> | undefined,
   { query?: string },
   ThunkExtensionsConfig
->('demo/fetch', async (payload, { extra, getState }) => {
-  const { loading } = getState().extensions.demoUser;
+>('sampleRoute/fetch', async (payload, { extra, getState }) => {
+  const { loading } = getState().extensions.sampleRouteUser;
   if (loading !== 'pending') {
     return;
   }
@@ -19,30 +19,30 @@ export const fetchSearchDemoUsers = createAsyncThunk<
   });
 });
 
-const initialState: DemoUserState = {
+const initialState: SampleRouteUserState = {
   entities: [],
   loading: 'idle',
 };
 
-const demoUserSlice = createSlice({
-  name: 'demoUser',
+const sampleRouteUserSlice = createSlice({
+  name: 'sampleRouteUser',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchSearchDemoUsers.pending, (state) => {
+      .addCase(fetchSearchSampleRouteUsers.pending, (state) => {
         if (state.loading === 'idle') {
           state.loading = 'pending';
         }
       })
-      .addCase(fetchSearchDemoUsers.fulfilled, (state, action) => {
+      .addCase(fetchSearchSampleRouteUsers.fulfilled, (state, action) => {
         const payload = action.payload;
         if (state.loading === 'pending' && payload !== undefined) {
           state.loading = 'idle';
           state.entities = payload.result.data;
         }
       })
-      .addCase(fetchSearchDemoUsers.rejected, (state) => {
+      .addCase(fetchSearchSampleRouteUsers.rejected, (state) => {
         if (state.loading === 'pending') {
           state.loading = 'idle';
         }
@@ -50,7 +50,7 @@ const demoUserSlice = createSlice({
   },
 });
 
-export const DemoUser = {
-  slice: demoUserSlice,
-  actions: demoUserSlice.actions,
+export const SampleRouteUser = {
+  slice: sampleRouteUserSlice,
+  actions: sampleRouteUserSlice.actions,
 };

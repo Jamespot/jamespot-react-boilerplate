@@ -1,14 +1,14 @@
 /**
- * @member route App url will be /ng/rr/boilerplate/demo
+ * @member route extension url will be /ng/rr/boilerplate/sample-route
  * @member reducerName If we use reduce, we can specify the reducer name
  */
-export const DemoAppConst = {
-  route: 'boilerplate/demo',
-  reducerName: 'demoUser',
+export const SampleRouteExtensionConst = {
+  route: 'boilerplate/sample-route',
+  reducerName: 'sampleRouteUser',
 };
 
 /**
- * Details of the app routes configured in index.tsx
+ * Details of the extension routes configured in index.tsx
  */
 export const ROUTES = {
   EXAMPLE: {
