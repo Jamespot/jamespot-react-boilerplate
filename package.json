@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack s --env NODE_ENV=development",
-    "build": "webpack --env NODE_ENV=production",
-    "build-theme": "webpack --env NODE_ENV=theme",
+    "build:theme": "webpack --env MODE=theme",
+    "publish:theme": "pnpm build:theme && tsx production/publish.ts",
     "prettier": "npx prettier --write ./",
     "lint": "npx eslint ./src/ --ext .ts,.tsx",
     "lint:fix": "npx eslint ./src/ --ext .ts,.tsx --fix"
@@ -15,12 +15,16 @@
   "author": "",
   "devDependencies": {
     "@reduxjs/toolkit": "^1.9.7",
+    "@types/archiver": "^7.0.0",
     "@types/node": "20.17.0",
     "@types/react": "^18.3.26",
     "@types/react-dom": "^18.3.7",
     "@types/styled-components": "^5.1.35",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "archiver": "^7.0.1",
+    "chalk": "^5.6.2",
+    "dotenv": "^17.2.3",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^8.10.2",
     "eslint-plugin-import": "^2.32.0",
@@ -34,6 +38,7 @@
     "jamespot-react-core": "link:../jamespot-react-core",
     "jamespot-user-api": "link:../jamespot-user-api",
     "lint-staged": "^12.5.0",
+    "node-fetch": "^3.3.2",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -45,6 +50,7 @@
     "styled-components": "^5.3.11",
     "ts-loader": "^9.5.4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1",
@@ -60,7 +66,7 @@
     ]
   },
   "engines": {
-    "node": ">=20.17.0 <21.0.0",
-    "pnpm": ">=9.9.0 <10"
+    "node": ">=24.11.0 <25.0.0",
+    "pnpm": ">=10.20.0 <11"
   }
 }

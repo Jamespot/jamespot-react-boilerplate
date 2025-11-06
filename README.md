@@ -14,15 +14,15 @@ Une extension de démonstration est disponible sur ce projet. N'hésitez pas à 
 
 ## Lancement du projet
 
-Le projet nécessite Node 20.17.0 et PNPM 9.9.X
+Le projet nécessite Node >24.10.0 et PNPM >10.20.0
 
-1. Installer pnpm 9.9.X
+1. Installer pnpm 10
 2. Cloner le projet
 3. Installer les dépendances
 4. Lancer le "serveur webpack"
 
 ```shell
-npm -g i pnpm@latest-9
+npm -g i pnpm@latest-10
 git clone https://github.com/Jamespot/jamespot-react-boilerplate
 pnpm install --frozen-lockfile
 
@@ -46,9 +46,9 @@ Pour la livraison de votre extension, il faudra produire le bundle javascript et
 
 Pour cela vous devrez :
 
-- produire le bundle : `npm run build`
-- renseigner les variables dans le script `production/make.sh`
-- utiliser le script `production/make.sh`. Cela upload votre bundle, crée le thème "React JS" qui va contenir votre bundle, et paramètre la plateforme pour utiliser ce thème.
-- paramétrer l'application "Extension UI React" pour déclarer que l'extension est disponible à l'adresse suivante : `/themes/EXT-reactjs/js/jamespot-react-extensions`
+- Déclarer une api dans l'administration de la plateforme administration > developpeur > module /?action=admin#/admin/dev/EXTModule
+- Renseigner les variables d'environement `.env`
+- Utiliser le script `pnpm publish:theme`. Cela upload votre bundle, crée le thème "React JS" qui va contenir votre bundle, et paramètre la plateforme pour utiliser ce thème.
+- Paramétrer l'application "Extension UI React" pour déclarer que l'extension est disponible à l'adresse suivante : `/themes/EXT-reactjs/js/bundle`
 
-L'application devrait maintenant être disponible !
+L'application devrait maintenant être disponible pour tout les utilisateurs !
