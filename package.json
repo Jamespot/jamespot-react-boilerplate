@@ -28,7 +28,6 @@
     "eslint-plugin-jsx-expressions": "^1.3.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "jamespot-front-business": "link:../jamespot-front-business",
     "jamespot-react-components": "link:../jamespot-react-components",
@@ -48,8 +47,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "webpack": "^5.102.1",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.15.2"
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   },
   "lint-staged": {
     "!(jest.setup.tsx)*.{js,jsx,ts,tsx}": [
