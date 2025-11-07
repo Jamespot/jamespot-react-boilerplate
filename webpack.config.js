@@ -56,10 +56,9 @@ module.exports = (env) => {
         },
         {
           test: /\.(jpe?g|png|gif|bmp|svg|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
-          loader: 'asset/resource',
-          options: {
-            name: '[name].[contenthash].[ext]',
-            outputPath: 'assets',
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/[name].[hash][ext]',
           },
         },
       ],
