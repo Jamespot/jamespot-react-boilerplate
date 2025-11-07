@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import archiver from 'archiver';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
@@ -74,6 +75,7 @@ async function main() {
     console.log(chalk.greenBright('\n✅ Upload complete!'));
   } else {
     console.error(chalk.redBright('\n❌ Upload error'));
+  }
 }
 
 main().catch((err) => {
