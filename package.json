@@ -38,7 +38,6 @@
     "jamespot-react-core": "link:../jamespot-react-core",
     "jamespot-user-api": "link:../jamespot-user-api",
     "lint-staged": "^12.5.0",
-    "node-fetch": "^3.3.2",
     "prettier": "^3.6.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
