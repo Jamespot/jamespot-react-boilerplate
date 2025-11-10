@@ -1,82 +1,86 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const COMPONENTS_EXTERNALS = require('./node_modules/jamespot-react-components/externals.json');
-const CORE_EXTERNALS = require('./node_modules/jamespot-react-core/externals.json');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const COMPONENTS_EXTERNALS = require('jamespot-react-components/externals.json');
+const CORE_EXTERNALS = require('jamespot-react-core/externals.json');
+
 const EXTERNALS = { ...COMPONENTS_EXTERNALS, ...CORE_EXTERNALS };
 
-module.exports = (env) => ({
-    mode: env.NODE_ENV || 'none',
-    watch: env.WATCH === 'true',
+module.exports = (env) => {
+  const NODE_ENV = env.NODE_ENV ?? 'production';
+  const devServerPort = 3040;
 
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: 'source-map',
-
-    devServer: {
-        hot: true,
-        port: 3041,
-        headers: {
-            'Access-Control-Allow-Origin': '*',
+  const plugins = [];
+  if (NODE_ENV === 'development') {
+    plugins.push(
+      new ForkTsCheckerWebpackPlugin({
+        async: true,
+        typescript: {
+          configFile: 'tsconfig.json',
+          memoryLimit: 4096,
+          diagnosticOptions: { semantic: false, syntactic: true },
+          mode: 'readonly',
         },
-    },
-    resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: ['.ts', '.tsx', '.js'],
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    },
+      }),
+    );
+  }
 
-    module: {
-        rules: [
-            {
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
-            {
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'ts-loader',
-                },
-            },
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            {
-                enforce: 'pre',
-                test: /\.js$/,
-                loader: 'source-map-loader',
-            },
-            {
-                test: /\.(jpe?g|png|gif|bmp|svg|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
-                loader: 'file-loader',
-            },
-        ],
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                styles: {
-                    name: 'styles',
-                    test: /\.css$/,
-                    chunks: 'all',
-                    enforce: true,
-                },
-            },
-        },
-    },
+  return {
+    mode: NODE_ENV,
+    devtool: NODE_ENV === 'production' ? 'inline-source-map' : 'eval-source-map',
+    entry: { app: './src/App.tsx' },
+    plugins,
     externals: EXTERNALS,
-    entry: {
-        app: './src/App.tsx',
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js'],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
+    watchOptions: {
+      aggregateTimeout: 1000,
+      ignored: ['**/node_modules/**', '**/build/**', '**/docs/**', '**/production/**'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ts(x?)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: NODE_ENV === 'development',
+              experimentalFileCaching: true,
+              configFile: 'tsconfig.json',
+            },
+          },
+        },
+        {
+          test: /\.(jpe?g|png|gif|bmp|svg|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/[name].[hash][ext]',
+          },
+        },
+      ],
     },
     output: {
-        clean: true,
-        path: path.resolve(__dirname, 'build'),
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].chunk.js',
-        publicPath:
-            env.NODE_ENV === 'production' || (env.NODE_ENV === 'development' && env.NODE_RUN === 'VM')
-                ? '/react-extensions/'
-                : 'http://localhost:3041/'
+      clean: { keep: /(\.d\.ts)|\.tsbuildinfo/ },
+      path: path.resolve(__dirname, 'build'),
+      filename: '[name].bundle.js',
+      chunkFilename: '[name].[contenthash].chunk.js',
+      publicPath:
+        env.MODE === 'theme'
+          ? '/themes/EXT-reactjs/js/bundle/'
+          : NODE_ENV === 'development'
+            ? `http://localhost:${devServerPort}/`
+            : '/',
     },
-});
+    devServer: {
+      port: devServerPort,
+      allowedHosts: 'all',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  };
+};
