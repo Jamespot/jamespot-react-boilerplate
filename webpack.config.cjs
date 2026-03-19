@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const COMPONENTS_EXTERNALS = require('jamespot-react-components/externals.json');
 const CORE_EXTERNALS = require('jamespot-react-core/externals.json');
 
-const EXTERNALS = { ...COMPONENTS_EXTERNALS, ...CORE_EXTERNALS };
+const EXTERNALS = { ...CORE_EXTERNALS };
 
 module.exports = (env) => {
   const NODE_ENV = env.NODE_ENV ?? 'production';
