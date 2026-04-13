@@ -25,6 +25,7 @@ Le projet nécessite Node >24.10.0 et PNPM >10.20.0
 npm -g i pnpm@latest-10
 git clone https://github.com/Jamespot/jamespot-react-boilerplate
 pnpm install --frozen-lockfile
+pnpm add -D jamespot-user-api@latest jamespot-front-business@latest jamespot-react-components@latest jamespot-react-core@latest 
 
 # launch webpack dev server
 pnpm dev
@@ -36,7 +37,7 @@ pnpm dev
 
 - cliquer sur le menu utilisateur > administration > applications
 - Installer l'application "Extension UI React"
-- Activer l'application et renseigner l'url de votre serveur webpack (ex: http://localhost:3040)
+- Activer l'application et renseigner l'url de votre serveur webpack (ex: https://localhost:3040)
 
 Après avoir lancé le serveur webpack (étape précédente), vous devriez avoir accès à votre application à l'url suivante : https://< plateforme-url >/ng/rr/boilerplate/sample-route
 

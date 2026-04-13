@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CORE_EXTERNALS = require('jamespot-react-core/externals.json');
@@ -28,7 +26,7 @@ module.exports = (env) => {
   return {
     mode: NODE_ENV,
     devtool: NODE_ENV === 'production' ? 'inline-source-map' : 'eval-source-map',
-    entry: { app: './src/App.tsx' },
+    entry: { app: './src/index.ts' },
     plugins,
     externals: EXTERNALS,
     resolve: {
@@ -67,18 +65,19 @@ module.exports = (env) => {
       path: path.resolve(__dirname, 'build'),
       filename: '[name].bundle.js',
       chunkFilename: '[name].[contenthash].chunk.js',
-      publicPath:
-        env.MODE === 'theme'
-          ? '/themes/EXT-reactjs/js/bundle/'
-          : NODE_ENV === 'development'
-            ? `http://localhost:${devServerPort}/`
-            : '/',
+      publicPath: env.MODE === 'theme' ? '/themes/EXT-reactjs/js/bundle/' : `https://localhost:${devServerPort}/`,
     },
     devServer: {
       port: devServerPort,
+      server: 'https',
       allowedHosts: 'all',
       headers: {
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Private-Network': 'true',
+      },
+      client: {
+        webSocketURL: `wss://localhost:${devServerPort}/ws`,
+        overlay: false,
       },
     },
   };

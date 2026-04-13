@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "webpack s --env NODE_ENV=development",
+    "dev": "webpack s",
     "build:theme": "webpack --env MODE=theme",
     "publish:theme": "pnpm build:theme && tsx production/publish.ts",
     "prettier": "npx prettier --write ./",
