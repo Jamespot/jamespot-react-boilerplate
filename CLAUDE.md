@@ -76,25 +76,15 @@ Avant de caster un type ou de réinventer une méthode API, **toujours consulter
 
 Le dossier `.claude/rules/` est **auto-loaded** récursivement par Claude Code au démarrage. Tu n'as rien à faire, les règles sont en contexte.
 
-### Synchronisation depuis le claude-workspace
+### Source canonique : claude-workspace
 
-Pour mettre à jour les règles communes depuis la source canonique (`~/jamespot/claude-workspace`) :
+Les rules de `.claude/rules/` viennent du workspace interne `claude-workspace`. La synchronisation se fait par un **push manuel** depuis le workspace (script local côté mainteneur), **uniquement quand on le décide** — pas de self-service côté projet.
 
-```bash
-pnpm sync:rules
-```
-
-Le script `script/sync-claude-rules.sh` :
-
-- Copie `_shared/` (sans `_monorepo/`), `ui/`, `domain/` depuis `<workspace>/.claude/rules/frontend/` via `rsync --delete`
-- Copie les fichiers de `<workspace>/.claude/docs/boilerplateRules/` à la racine de `.claude/rules/` (sans `--delete` — les règles custom du projet à la racine ne sont pas écrasées)
-- Bash + rsync (disponibles partout dans l'équipe). Pour Windows pur, prévoir Git Bash ou WSL.
-
-Override du chemin source via la variable d'env `CLAUDE_WORKSPACE` si l'arbre n'est pas à `~/jamespot/claude-workspace`.
+Ne modifie pas directement les rules synchronisées depuis le workspace (`_shared/`, `ui/`, `domain/`) : toute modif serait écrasée au prochain push. Pour faire évoluer une règle commune, propose la modif côté `claude-workspace`.
 
 ### Règles propres au projet
 
-Ajouter directement de nouveaux `.md` à `.claude/rules/` (un fichier court par règle). Le script de sync ne les touchera pas.
+Ajouter directement de nouveaux `.md` à `.claude/rules/` (un fichier court par règle). Le push depuis le workspace ne les touchera pas — les rules custom à la racine survivent au sync.
 
 ## Voir aussi
 
