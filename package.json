@@ -10,7 +10,8 @@
     "publish:theme": "pnpm build:theme && tsx production/publish.ts",
     "prettier": "npx prettier --write ./",
     "lint": "npx eslint ./src/ --ext .ts,.tsx",
-    "lint:fix": "npx eslint ./src/ --ext .ts,.tsx --fix"
+    "lint:fix": "npx eslint ./src/ --ext .ts,.tsx --fix",
+    "sync:rules": "bash script/sync-claude-rules.sh"
   },
   "keywords": [],
   "author": "",
